@@ -37,7 +37,7 @@ in routes.rb
     mount LittleSqlClient::Engine => "/sql_records"
   end
 ```
-and then open url "your_project_host/sql_records"
+and then open url "`your_project_host`/sql_records"
 
 
 ## License
