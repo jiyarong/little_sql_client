@@ -20,7 +20,7 @@ Or install it yourself as:
 $ gem install little_sql_client
 ```
 
-## Contributing
+## Usage
 ```ruby
 $ rails g little_sql_client:install
 ```
