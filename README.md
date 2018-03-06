@@ -1,8 +1,5 @@
 # LittleSqlClient
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+A streamlined SQL query tool
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -22,7 +19,26 @@ $ gem install little_sql_client
 ```
 
 ## Contributing
-Contribution directions go here.
+```ruby
+$ rails g little_sql_client:install
+```
+in config/initializer/little_sql_client.rb 
+```ruby
+# setup your safe ip in production mode
+LittleSqlClient::Config.ip_white_list = [
+    # '127.0.0.1'
+]
+```
+to setup your safe ip
+
+in routes.rb
+```ruby
+  Rails.application.routes.draw do
+    mount LittleSqlClient::Engine => "/sql_records"
+  end
+```
+and then open url "your_project_host/sql_records"
+
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
