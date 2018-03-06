@@ -1,0 +1,107 @@
+<style>
+  table,table tr th, table tr td {
+    border:1px solid black;
+  }
+
+  .btn {
+    background-color: #3bb3e0;
+    padding: 10px;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+    border: solid 1px #186f8f;
+    border-radius: 5px;
+  }
+
+  .text-area-format {
+    width: 100%;
+    height: 300px;
+    font-size: 20px;
+  }
+
+  .container_area {
+    display: flex;
+  }
+
+  .area {
+    flex: 1;
+
+  }
+</style>
+
+
+<script
+src="http://code.jquery.com/jquery-3.1.0.min.js"
+integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+crossorigin="anonymous"></script>
+<%= javascript_include_tag "sql-formatter.min.js" %>
+
+<div>
+  <%= form_tag search_client_index_path do %>
+      <div style="width: 100%" class="container_area">
+        <div class="area">
+          <%= text_area_tag "sql_text", params[:sql_text], class: "text-area-format" %>
+        </div>
+        <div class="">
+          <%= submit_tag "query", class: "btn text-area-format" %>
+        </div>
+      </div>
+      limit number
+      <%= number_field_tag "limit_number", params[:limit_number].to_i , style: "width: auto"%>
+<% end %>
+
+  <% if @error.present? %>
+    <%= "error:: #{@error}" %>
+  <% end %>
+
+  <% if @results.blank? %>
+    No data
+  <% else %>
+    <%= "total #{@total_number}" %>
+    <table>
+      <tr>
+        <% @results.columns.each do |column| %>
+          <td>
+            <b>
+              <%= column %>
+            </b>
+          </td>
+        <% end %>
+      </tr>
+      <% @results.rows.each do |row| %>
+        <tr>
+          <% row.each do |record| %>
+            <td>
+              <%= record %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  function formatSql() {
+      $("#sql_text").val(sqlFormatter.format($("#sql_text").val()))
+  }
+
+  $(document).ready(function () {
+      formatSql();
+
+      $("#sql_text").keyup(function(event) {
+          last = event.timeStamp;
+          if (event.keyCode !== 32 && event.keyCode !== 13 ) {
+              setTimeout(function () {
+                  if (last - event.timeStamp === 0) {
+                      formatSql()
+                  }
+              }, 500);
+          }
+      });
+
+  })
+
+</script>
