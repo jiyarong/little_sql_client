@@ -1,5 +1,5 @@
 # LittleSqlClient
-A streamlined SQL query tool
+A streamlined SQL query tool for rails
 
 ![example](https://github.com/jiyarong/little_sql_client/blob/master/example.png)
 
