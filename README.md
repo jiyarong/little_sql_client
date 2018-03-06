@@ -1,7 +1,7 @@
 # LittleSqlClient
 A streamlined SQL query tool
 
-![example][https://github.com/jiyarong/little_sql_client/blob/master/example.png]
+![example](https://github.com/jiyarong/little_sql_client/blob/master/example.png)
 
 ## Installation
 Add this line to your application's Gemfile:
